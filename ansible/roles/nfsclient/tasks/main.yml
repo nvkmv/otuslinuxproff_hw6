@@ -1,0 +1,15 @@
+---
+# tasks file for nfsclient
+
+- name: create nsf folder
+  file:
+    path: /mnt/nfs_share
+    state: directory
+
+- name: mount remote dir
+  ansible.posix.mount:
+    src: 192.168.56.66:/usr/share/nfs_share
+    path: /mnt/nfs_share
+    boot: yes
+    state: mounted
+    fstype: nfs

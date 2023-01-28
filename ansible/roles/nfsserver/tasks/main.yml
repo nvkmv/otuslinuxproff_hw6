@@ -1,0 +1,24 @@
+---
+# tasks file for nfsserver
+- name: mkdir dir for nfs
+  file:
+    path: /usr/share/nfs_share
+    state: directory
+
+- name: create test file
+  shell:
+    cmd: touch /usr/share/nfs_share/file{1..4}
+
+- name: template export file
+  template:
+    src: templates/exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: start nfs service
+  systemd:
+    name: nfs-server.service
+    enabled: yes
+    state: started

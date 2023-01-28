@@ -1,0 +1,14 @@
+---
+- name: NFS to server
+
+  hosts: server
+  become: true
+  roles:
+    - nfsserver
+
+- name: NFS to client
+  hosts: client
+  become: true
+  roles:
+    - nfsclient
+
