@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_version = "2.0"
   
   config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "v"
+    #ansible.verbose = "v"
     ansible.playbook = "ansible/playbook.yml"
   end  
 

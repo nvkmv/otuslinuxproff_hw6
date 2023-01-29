@@ -14,3 +14,14 @@
     opts: rw,sync,hard
     state: mounted
     fstype: nfs
+
+- name: test permissions upload dir
+  file:
+    path: /mnt/nfs_share/upload/testpermmfile
+    state: touch
+    mode: u=rw,g=rw,o=rw
+
+- name: cat upload
+  shell:
+    cmd: ls -a /mnt/nfs_share/upload
+  register: result  

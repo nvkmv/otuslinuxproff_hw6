@@ -1,0 +1,15 @@
+---
+
+- name: start firewalld
+  systemd:
+    name: firewalld.service
+    enabled: yes
+    state: started
+
+- name: add rules tu firewalld
+  ansible.posix.firewalld:
+    #zone: public
+    service: nfs
+    permanent: yes
+    immediate: yes
+    state: enabled
