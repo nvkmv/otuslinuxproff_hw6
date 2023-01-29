@@ -8,8 +8,9 @@
 
 - name: mount remote dir
   ansible.posix.mount:
-    src: 192.168.56.66:/usr/share/nfs_share
+    src: 192.168.56.66:/srv/nfs_share
     path: /mnt/nfs_share
     boot: yes
+    opts: rw,sync,hard
     state: mounted
     fstype: nfs

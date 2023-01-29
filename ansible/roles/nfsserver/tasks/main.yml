@@ -2,12 +2,21 @@
 # tasks file for nfsserver
 - name: mkdir dir for nfs
   file:
-    path: /usr/share/nfs_share
+    path: /srv/nfs_share
     state: directory
+
+- name: create upload dir
+  file:
+    path: /srv/nfs_share/upload
+    state: directory
+    owner: nobody
+    group: nobody
+    mode: "0777"  
 
 - name: create test file
   shell:
-    cmd: touch /usr/share/nfs_share/file{1..4}
+    cmd: touch /srv/nfs_share/upload/file{1..4}
+  become: no    
 
 - name: template export file
   template:
