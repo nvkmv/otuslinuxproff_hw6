@@ -5,10 +5,23 @@
   become: true
   roles:
     - nfsserver
-
+    
 - name: NFS to client
   hosts: client
   become: true
   roles:
     - nfsclient
 
+  post_tasks:
+    - name: show upload dir
+      debug:
+        var: result.stdout_lines
+
+
+- name: firewalld
+  hosts: all
+  become: true
+  roles:
+    - firewalld
+ 
+  
