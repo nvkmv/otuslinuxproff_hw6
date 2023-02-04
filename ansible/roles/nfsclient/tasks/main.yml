@@ -11,7 +11,7 @@
     src: 192.168.56.66:/srv/nfs_share
     path: /mnt/nfs_share
     boot: yes
-    opts: rw,sync,hard
+    opts: rw,sync,hard,nfsvers=3
     state: mounted
     fstype: nfs
 
@@ -24,4 +24,9 @@
 - name: cat upload
   shell:
     cmd: ls -a /mnt/nfs_share/upload
-  register: result  
+  register: result
+
+- name: show mount
+  shell:
+    cmd: mount | grep /mnt
+  register: showmount    

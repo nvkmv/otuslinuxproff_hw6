@@ -4,20 +4,24 @@
   hosts: server
   become: true
   roles:
-    - nfsserver
     - firewalld
+    - nfsserver
 
 - name: NFS to client
   hosts: client
   become: true
   roles:
-    - nfsclient
     - firewalld
+    - nfsclient
+      
 
   post_tasks:
     - name: show upload dir
       debug:
-        var: result.stdout_lines
+        var: "{{item}}"
+      with_items:
+        - result.stdout_lines
+        - showmount.stdout
 
 
    

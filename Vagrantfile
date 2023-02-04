@@ -3,11 +3,10 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "nvkmv/rockylinux9"
-  config.vm.box_version = "2.0"
-  
+  config.vm.box_version = "2.0" 
   config.vm.provision "ansible" do |ansible|
-    #ansible.verbose = "v"
-    ansible.playbook = "ansible/playbook.yml"
+ # ansible.verbose = "v"
+  ansible.playbook = "ansible/playbook.yml"
   end  
 
   config.vm.provider "virtualboxi" do |v|
@@ -18,6 +17,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "server" do |server|
     server.vm.hostname = "server"
     server.vm.network "private_network", ip: "192.168.56.66", virtualbox__inet: "net1"
+    server.vm.synced_folder "./data", "/home/vagrant/data" 
   end
 
   config.vm.define "client" do |client|

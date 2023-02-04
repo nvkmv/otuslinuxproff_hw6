@@ -6,10 +6,14 @@
     enabled: yes
     state: started
 
-- name: add rules tu firewalld
+- name: add rules to firewalld
   ansible.posix.firewalld:
     #zone: public
-    service: nfs
+    service: "{{item}}"
     permanent: yes
     immediate: yes
     state: enabled
+  with_items:
+    - nfs3
+    - rpc-bind
+    - mountd  

@@ -25,6 +25,14 @@
     owner: root
     group: root
     mode: "0644"
+ 
+- name: template nfs.conf
+  template:
+    src: templates/nfs.conf
+    dest: /etc/nfs.conf
+    owner: root
+    group: root
+    mode: "0644"  
 
 - name: start nfs service
   systemd:
